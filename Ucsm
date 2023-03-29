@@ -1,0 +1,34 @@
+
+python
+Copy code
+import requests
+import time
+
+# Define URLs to monitor
+urls = [
+    'https://example.com',
+    'https://google.com',
+    'https://facebook.com'
+]
+
+# Define function to check status code
+def check_status(url):
+    try:
+        r = requests.get(url)
+        if r.status_code == 200:
+            return True
+        else:
+            return False
+    except:
+        return False
+
+# Loop through URLs and check status every 60 seconds
+while True:
+    for url in urls:
+        status = check_status(url)
+        if status:
+            print(url, 'is up')
+        else:
+            print(url, 'is down')
+    time.sleep(60)
+
